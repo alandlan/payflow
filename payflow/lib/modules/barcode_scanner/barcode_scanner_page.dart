@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
-import 'package:payflow/shared/widgets/divider_vertical/divider_vertical_widget.dart';
-import 'package:payflow/shared/widgets/label_button/label_button.dart';
+import 'package:payflow/shared/widgets/bottom_sheet/botton_sheet_widget.dart';
+import 'package:payflow/shared/widgets/set_label_buttons/set_label_buttons.dart';
 
 class BarcodeScannerPage extends StatefulWidget {
   const BarcodeScannerPage({Key? key}) : super(key: key);
@@ -14,51 +14,57 @@ class BarcodeScannerPage extends StatefulWidget {
 class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text(
-          "Escaneie o código de barras do boleto",
-          style: TextStyles.buttonBackground,
-        ),
-        leading: BackButton(color: AppColors.background),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              color: Colors.black,
+    return BottonSheetWidget(
+      primaryLabel: "Escanear novamente",
+      primaryOnPressed: () {},
+      secondaryLabel: "Digitar código",
+      secondaryOnPressed: () {},
+      title: "Não foi possível identificar um código de barras",
+      subtitle: "Tente escanear novamente ou digite o código do seu boleto",
+    );
+    return SafeArea(
+      top: true,
+      bottom: true,
+      right: true,
+      left: true,
+      child: RotatedBox(
+        quarterTurns: 1,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Text(
+              "Escaneie o código de barras do boleto",
+              style: TextStyles.buttonBackground,
             ),
+            centerTitle: true,
+            leading: BackButton(color: AppColors.background),
           ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Colors.transparent,
-            ),
+          body: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  color: Colors.black.withOpacity(0.8),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.transparent,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.black.withOpacity(0.8),
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: Container(
-              color: Colors.black,
-            ),
+          bottomNavigationBar: SetLabelButtons(
+            primaryLabel: "Inserir código do boleto",
+            primaryOnPressed: () {},
+            secondaryLabel: "Adicionar da galeria",
+            secondaryOnPressed: () {},
           ),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        height: 56,
-        child: Row(
-          children: [
-            Expanded(
-              child: LabeButton(
-              label: "Inserir código do boleto",
-              onPressed: () {},
-            )),
-            DividerVerticalWidget(),
-            Expanded(
-              child: LabeButton(
-              label: "Adicionar da galeria",
-              onPressed: () {},
-            )),
-          ],
         ),
       ),
     );
