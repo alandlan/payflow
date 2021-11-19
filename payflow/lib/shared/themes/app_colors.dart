@@ -17,4 +17,6 @@ class AppColors {
   static final shape = Color(0xFFFAFAFC);
   // ignore: prefer_const_constructors
   static final background = Color(0xFFFFFFFF);
+  // ignore: prefer_const_constructors
+  static final input = Color(0xFFB1B0B8);
 }
