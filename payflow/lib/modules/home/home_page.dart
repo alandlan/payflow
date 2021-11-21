@@ -61,6 +61,13 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
+              onPressed: () {
+                controller.LimparBoletos(context);
+                setState(() {});
+              },
+              icon: Icon(Icons.cleaning_services),
+            ),
+            IconButton(
                 onPressed: () {
                   controller.setPage(0);
                   setState(() {});
@@ -73,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 )),
             GestureDetector(
               onTap: () async {
-                await Navigator.pushNamed(context, "/barcode_scanner");
+                await Navigator.pushNamed(context, "/insert_boleto");
                 setState(() {});
               },
               child: Container(
