@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 class BoletoModel {
   final String? name;
   final String? dueDate;
@@ -37,16 +38,17 @@ class BoletoModel {
 
   factory BoletoModel.fromMap(Map<String, dynamic> map) {
     return BoletoModel(
-      name: map['name'] != null ? map['name'] : null,
-      dueDate: map['dueDate'] != null ? map['dueDate'] : null,
-      value: map['value'] != null ? map['value'] : null,
-      barcode: map['barcode'] != null ? map['barcode'] : null,
+      name: map['name'],
+      dueDate: map['dueDate'],
+      value: map['value'],
+      barcode: map['barcode'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory BoletoModel.fromJson(String source) => BoletoModel.fromMap(json.decode(source));
+  factory BoletoModel.fromJson(String source) =>
+      BoletoModel.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -56,19 +58,16 @@ class BoletoModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is BoletoModel &&
-      other.name == name &&
-      other.dueDate == dueDate &&
-      other.value == value &&
-      other.barcode == barcode;
+        other.name == name &&
+        other.dueDate == dueDate &&
+        other.value == value &&
+        other.barcode == barcode;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^
-      dueDate.hashCode ^
-      value.hashCode ^
-      barcode.hashCode;
+    return name.hashCode ^ dueDate.hashCode ^ value.hashCode ^ barcode.hashCode;
   }
 }

@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 
+
 class InputTextWidget extends StatelessWidget {
   final String label;
   final IconData icon;
-  final TextEditingController? controller;
+  final String? initalValue;
   final String? Function(String?)? validator;
-  final String? initialValue;
+  final TextEditingController? controller;
   final void Function(String value) onChanged;
-
   const InputTextWidget(
       {Key? key,
       required this.label,
       required this.icon,
-      this.controller,
+      required this.onChanged,
+      this.initalValue,
       this.validator,
-      this.initialValue,
-      required this.onChanged})
+      this.controller})
       : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class InputTextWidget extends StatelessWidget {
         children: [
           TextFormField(
             controller: controller,
-            initialValue: initialValue,
+            initialValue: initalValue,
             validator: validator,
             onChanged: onChanged,
             style: TextStyles.input,
@@ -41,14 +41,25 @@ class InputTextWidget extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: Icon(icon),
+                      child: Icon(
+                        icon,
+                        color: AppColors.primary,
+                      ),
                     ),
-                    Container(width: 1, height: 48, color: AppColors.stroke)
+                    Container(
+                      width: 1,
+                      height: 48,
+                      color: AppColors.stroke,
+                    )
                   ],
                 ),
                 border: InputBorder.none),
           ),
-          Divider(height: 1, thickness: 1, color: AppColors.stroke)
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: AppColors.stroke,
+          )
         ],
       ),
     );

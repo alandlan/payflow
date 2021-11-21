@@ -4,6 +4,8 @@ class AppColors {
   // ignore: prefer_const_constructors
   static final primary = Color(0xFFFF941A);
   // ignore: prefer_const_constructors
+  static final secondary = Color(0xFF585666);
+  // ignore: prefer_const_constructors
   static final grey = Color(0xFF585666);
   // ignore: prefer_const_constructors
   static final delete = Color(0xFFE83F5B);

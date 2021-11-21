@@ -6,7 +6,6 @@ import 'package:payflow/shared/themes/app_text_styles.dart';
 import 'package:payflow/shared/widgets/bottom_sheet/botton_sheet_widget.dart';
 import 'package:payflow/shared/widgets/set_label_buttons/set_label_buttons.dart';
 
-
 class BarcodeScannerPage extends StatefulWidget {
   BarcodeScannerPage({Key? key}) : super(key: key);
 
@@ -93,12 +92,12 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                   ],
                 ),
                 bottomNavigationBar: SetLabelButtons(
-                  primaryLabel: "Inserir código do boleto",
-                  primaryOnPressed: () {
+                  labelPrimary: "Inserir código do boleto",
+                  onTapPrimary: () {
                     controller.status = BarcodeScannerStatus.error("Error");
                   },
-                  secondaryLabel: "Adicionar da galeria",
-                  secondaryOnPressed: controller.scanWithImagePicker,
+                  labelSecondary: "Adicionar da galeria",
+                  onTapSecondary: controller.scanWithImagePicker,
                 )),
           ),
           ValueListenableBuilder<BarcodeScannerStatus>(
@@ -107,13 +106,13 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                 if (status.hasError) {
                   return Align(
                       alignment: Alignment.bottomLeft,
-                      child: BottonSheetWidget(
-                          primaryLabel: "Escanear novamente",
-                          primaryOnPressed: () {
+                      child: BottomSheetWidget(
+                          labelPrimary: "Escanear novamente",
+                          onTapPrimary: () {
                             controller.scanWithCamera();
                           },
-                          secondaryLabel: "Digitar código",
-                          secondaryOnPressed: () {},
+                          labelSecondary: "Digitar código",
+                          onTapSecondary: () {},
                           title:
                               "Não foi possível identificar um código de barras.",
                           subtitle:

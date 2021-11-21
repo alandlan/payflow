@@ -18,25 +18,23 @@ class InsertBoletoController {
   void onChange(
       {String? name, String? dueDate, double? value, String? barcode}) {
     model = model.copyWith(
-      name: name,
-      dueDate: dueDate,
-      value: value,
-      barcode: barcode,
-    );
+        name: name, dueDate: dueDate, value: value, barcode: barcode);
   }
 
   Future<void> saveBoleto() async {
     final instance = await SharedPreferences.getInstance();
     final boletos = instance.getStringList("boletos") ?? <String>[];
-    boletos.add(model.toJson());
-    await instance.setStringList("boletos", boletos);
+    if(model.name != null && model.dueDate != null && model.value != null && model.barcode != null){
+      boletos.add(model.toJson());
+      await instance.setStringList("boletos", boletos);
+    }
     return;
   }
 
-  Future<void> cadastrarBoleto() async {
+  Future<void> cadastrar() async {
     final form = formKey.currentState;
     if (form!.validate()) {
-      return saveBoleto();
+      return await saveBoleto();
     }
   }
 }
